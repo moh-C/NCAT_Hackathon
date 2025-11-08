@@ -1,0 +1,19 @@
+version: '3.8'
+
+services:
+  ncat-hackathon:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ncat-challenge1
+    ports:
+      - "8895:8895"
+    volumes:
+      # Mount the entire project directory to persist changes and outputs
+      - .:/app
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+    command: jupyter lab --ip=0.0.0.0 --port=8895 --no-browser --allow-root --notebook-dir=/app
+    stdin_open: true
+    tty: true
+
