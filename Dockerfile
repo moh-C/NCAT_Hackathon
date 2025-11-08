@@ -16,11 +16,12 @@ RUN apt-get update && apt-get install -y \
     libgthread-2.0-0 \
     && rm -rf /var/lib/apt/lists/*
 
-# Copy requirements file from Challenge1
-COPY Challenge1/requirements.txt .
+# Copy requirements files from both challenges
+COPY Challenge1/requirements.txt requirements_challenge1.txt
+COPY ChallengeBonus/requirements.txt requirements_bonus.txt
 
-# Install Python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+# Install Python dependencies for both challenges
+RUN pip install --no-cache-dir -r requirements_challenge1.txt -r requirements_bonus.txt
 
 # Copy the entire project directory structure
 COPY . .
